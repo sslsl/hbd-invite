@@ -99,7 +99,7 @@
     <p>由于本人立志成为一名业余 bartender 🍹</p>
     <p>如果你有特别想喝的鸡尾酒或饮品，tell me，让我提前学一下！</p>
 
-    <a href="mailto:your_email@example.com?subject=My%20Fun%20Fact%20for%20Your%20Birthday%20Party" class="button">
+    <a href="mailto:echowu233@gmail.com?subject=My%20Fun%20Fact%20for%20Your%20Birthday%20Party" class="button">
       📧 点击发送你的Fun Fact
     </a>
 
@@ -111,13 +111,17 @@
       <source src="https://www.bensound.com/bensound-music/bensound-funkyelement.mp3" type="audio/mpeg">
     </audio>
     <script>
-  window.addEventListener('click', function () {
+  document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('bgm');
-    if (audio.muted) {
+    const resumeAudio = () => {
       audio.muted = false;
-      audio.play();
-    }
-  }, { once: true });
+      audio.play().catch(() => {});
+      document.removeEventListener('click', resumeAudio);
+      document.removeEventListener('touchstart', resumeAudio);
+    };
+    document.addEventListener('click', resumeAudio, { once: true });
+    document.addEventListener('touchstart', resumeAudio, { once: true });
+  });
 </script>
   </div>
 </body>
